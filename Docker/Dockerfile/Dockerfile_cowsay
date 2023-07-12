@@ -1,0 +1,12 @@
+FROM chuanwen/cowsay
+ENTRYPOINT [ "/usr/games/cowsay" ]
+CMD ["Diga","algo", "no", "CMD", "...", "ele", "pode", "ser", "sobrescrito", "!!"]
+
+# > docker container run cow-image
+# > docker container run cow-image dizendo outra coisa
+# > docker container run cow-image -f moofasa "um leao falando algo"
+# > docker container run cow-image -l
+
+## Gerando Imagem e Criando o Container
+# 1. `docker image build --tag cow-image .`
+# 2. `docker run --name cow-container cow-image`

@@ -1,0 +1,1 @@
+![sqp_scheme](.imgs/sqp_scheme.png)

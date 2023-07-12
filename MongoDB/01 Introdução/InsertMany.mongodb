@@ -1,0 +1,7 @@
+use("my_db")
+
+db.my_collection.insertMany([
+  { Name: "Ricardo", "Idade": 19, "Genero":"M"},
+  { Name: "Stefani", "Idade": 23, "Genero":"F"},
+  { Name: "Matheus", "Idade": 30, "Genero":"M"}
+])

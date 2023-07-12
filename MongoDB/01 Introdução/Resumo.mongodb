@@ -1,0 +1,146 @@
+// Procurando todos os objetos
+use("class")
+db.inventory.find()
+
+// Adicionando um objeto
+use("class")
+
+db.inventory.insertOne({
+  item: "Desktop",
+  qty: 23,
+  size: {
+    h: 10.3,
+    w: 18,
+    uom: "in",
+  },
+  status: "B",
+})
+
+// Adicionando varios objetos
+use("class")
+db.inventory.insertMany([
+  { item: "paper", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
+  { item: "planner", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "C" },
+  { item: "postcard", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "D" }
+])
+
+// Usando o Find 
+use("class")
+db.inventory.find({
+  status: "D"
+})
+
+// Relacionamentos
+use("class")
+db.users.find();
+db.user.insertOne({
+  _id: "joe",
+  name: "Joe Bookreader",
+  address: {
+    street: "12 Fake Street",
+    city: "Faketown",
+    state: "NA",
+    zip: "12345"
+  }  
+})
+
+
+use("class")
+db.user.insertOne({
+  _id: "susan",
+  name: "Susan Bookreader",
+  address: [
+    {
+      street: "12 Fake Street",
+      city: "Faketown",
+      state: "NA",
+      zip: "12345"
+    },
+    {
+      street: "122 Fake Street",
+      city: "Faketown",
+      state: "MA",
+      zip: "123435"
+    },
+  ]
+})
+
+// Caso queria fazer uma pesquisa pelo State
+use("class")
+db.user.find({ "address.state": "NA" })
+
+db.user.find({ "address.state": "MA" })
+
+
+// Para omitir, ou nao dados de uma pesquisa
+use("class")
+db.user.find(
+  { 
+    "address.state": "NA"
+  },
+  {
+    name: true
+    _id: false
+  }
+)
+
+  // True pode ser 1 e false pode ser 0
+use("class")
+db.user.find(
+  { 
+    "address.state": "NA"
+  },
+  {
+    name: 1
+    _id: 0
+  }
+)
+
+// Dropando uma collection
+use("class")
+db.user.drop();
+db.inventory.drop();
+
+// Usando o Limited
+use("class")
+
+db.users.insertMany([
+  {
+    _id: "joe",
+    name: "Joe Bookreader",
+    address: {
+      street: "12 Fake Street",
+      city: "Faketown",
+      state: "NA",
+      zip: "12345"
+    }
+  },
+  {
+  _id: "susan",
+  name: "Susan Bookreader",
+  address: [
+      {
+        street: "12 Fake Street",
+        city: "Faketown",
+        state: "NA",
+        zip: "12345"
+      },
+      {
+        street: "122 Fake Street",
+        city: "Faketown",
+        state: "MA",
+        zip: "123435"
+      },
+    ]
+  }
+])
+
+use("class")
+db.users.find().limit(1);
+
+use("class")
+db.users.findOne();
+
+// Pulando, Offset
+use("class")
+db.users.find().skip(1);
